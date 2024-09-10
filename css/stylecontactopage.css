@@ -1,0 +1,309 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #fff;
+  background-size: cover;
+  height: 100vh;
+}
+
+header {
+  background-color: #000;
+}
+
+.container {
+  margin: 0 auto;
+  width: 90%;
+  max-width: 1200px;
+  overflow: hidden;
+}
+
+.nav {
+  background-color: #000;
+  padding: 40px 0;
+  display: grid;
+  justify-content: space-between;
+  align-items: center;
+  grid-template-columns: repeat(2, max-content);
+
+  --estado-close: scale(0);
+  --estado-hamburguesa: scale(1);
+  --estado-menu: translate(-100%);
+}
+
+.nav:target {
+  --estado-close: scale(1);
+  --estado-hamburguesa: scale(0);
+  --estado-menu: translate(0);
+}
+
+.nav_hamburguesa {
+  transform: var(--estado-hamburguesa);
+}
+
+.nav_cruz {
+  transform: var(--estado-close);
+}
+
+.nav_logo {
+  font-size: 4.5rem;
+  z-index: 1;
+  color: #fff;
+  display: block;
+}
+
+.nav_logo-small {
+  width: 124px;
+  display: none;
+  z-index: 10;
+  position: relative;
+}
+
+.nav_list {
+  background-color: #000;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: grid;
+  align-content: flex-end;
+  padding-bottom: 100px;
+  gap: 2rem;
+  padding-left: 5%;
+
+  transform: var(--estado-menu);
+  transition: 300ms transform;
+}
+
+.nav_item {
+  list-style: none;
+}
+
+.nav_link {
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+}
+
+.nav_hamburguesa,
+.nav_cruz {
+  color: #fff;
+  transition: 300ms transform;
+  grid-column: -2/-1;
+  grid-row: 1/2;
+}
+
+.nav_icon {
+  width: 40px;
+}
+
+main {
+  padding: 10px;
+}
+
+.top {
+  display: inline-block;
+  transition: transform 300ms ease-in-out;
+}
+
+.top:hover {
+  transform: translateY(-5px);
+}
+
+footer {
+  margin-top: auto;
+  color: #000;
+  text-align: center;
+  width: 100%;
+  font-size: small;
+  font-family: "Roboto", sans-serif;
+}
+
+@media (min-width: 1024px) {
+  .nav {
+    --estado-hamburguesa: scale(0);
+    --estado-menu: translate(0);
+  }
+
+  .nav_list {
+    padding: 0;
+    background-color: transparent;
+    position: relative;
+    gap: 1.5rem;
+    grid-auto-flow: column;
+    transform: none;
+    grid-column: -2/-1;
+    grid-row: 1/2;
+    height: auto;
+  }
+
+  .nav_link {
+    font-size: 1rem;
+    letter-spacing: normal;
+  }
+
+  .nav_hamburguesa,
+  .nav_cruz {
+    display: none;
+  }
+
+  .nav_logo {
+    display: block;
+  }
+
+  .nav_logo-small {
+    display: none;
+  }
+}
+
+@media (max-width: 1024px) {
+  .nav_hamburguesa {
+    display: block;
+  }
+
+  .nav_logo {
+    display: none;
+  }
+
+  .nav_logo-small {
+    display: block;
+  }
+}
+
+@media (max-width: 767px) {
+  .nav_logo {
+    display: none;
+  }
+  .nav_logo-small {
+    display: block;
+  }
+
+  .nav_list {
+    height: 100vh;
+    margin-top: 0;
+  }
+
+  footer {
+    color: #000;
+    text-align: center;
+    font-size: small;
+    font-family: "Roboto", sans-serif;
+  }
+}
+
+/*CONTACTO*/
+
+.linkscontacto {
+  justify-content: center;
+  text-align: center;
+  margin: 1px 0;
+}
+
+a {
+  justify-content: center;
+  display: inline-block;
+  margin: 1px;
+  font-size: small;
+  color: #000000;
+
+  text-decoration: wavy;
+
+  font-style: bold;
+}
+
+a:hover {
+  transform: translateY(-2px);
+  transition: all 300ms;
+}
+
+.formulario {
+  display: grid;
+  border: 3px solid #000;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 40%;
+  text-align: center;
+  font-size: 14px;
+  background-color: #fff;
+  color: #000000;
+  grid-gap: 10px;
+}
+
+.boton {
+  list-style-type: none;
+  border: 1px solid #929292;
+  margin-top: 5px;
+  padding: 4px;
+  background: #ffffff;
+  border-radius: 4px;
+}
+
+.boton:hover {
+  transform: translateY(-2px);
+  box-shadow: -2px 2px #000000;
+  transition: all 300ms;
+}
+
+.pdf {
+  text-align: center;
+  justify-content: center;
+  margin: 0px;
+  font-size: x-small;
+  color: #000000;
+  text-decoration: none;
+}
+
+p {
+  text-align: center;
+}
+
+.mail {
+  text-decoration: wavy;
+  color: rgb(0, 0, 0);
+  font-size: small;
+}
+
+.mail:hover {
+  transform: translateY(-2px);
+  box-shadow: 0px 2px #000000;
+  transition: all 300ms;
+}
+
+.logolinktree img {
+  width: 150px;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .formulario {
+    max-width: 90%;
+    padding: 24px;
+    font-size: 12px;
+  }
+  input[type="text"],
+  textarea {
+    font-size: 14px;
+  }
+
+  .boton {
+    max-width: 100%;
+    margin: 5px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .formulario {
+    padding: 10px;
+    font-size: 12px;
+  }
+
+  .boton {
+    padding: 8px 16px;
+  }
+}

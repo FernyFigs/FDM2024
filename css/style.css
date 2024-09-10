@@ -1,0 +1,375 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+    /* Cubre el fondo con un ligero filtro oscuro para que la página se vea mejor y sea más legible. */
+      url("../assets/img/fondo/bandalarga.jpg");
+  background-size: cover;
+  height: 100vh;
+}
+
+.container {
+  margin: 0 auto;
+  width: 90%;
+  max-width: 1200px;
+  overflow: hidden;
+}
+
+.nav {
+  padding: 40px 0;
+  display: grid;
+  justify-content: space-between;
+  align-items: center;
+  grid-template-columns: repeat(2, max-content);
+
+  --estado-close: scale(0);
+  --estado-hamburguesa: scale(1);
+  --estado-menu: translate(-100%);
+}
+
+.nav:target {
+  --estado-close: scale(1);
+  --estado-hamburguesa: scale(0);
+  --estado-menu: translate(0);
+}
+
+.nav_hamburguesa {
+  transform: var(--estado-hamburguesa);
+}
+
+.nav_cruz {
+  transform: var(--estado-close);
+}
+
+.nav_logo {
+  font-size: 4.5rem;
+  z-index: 1;
+  color: #fff;
+  display: block; /* Muestra por defecto en pantallas grandes */
+}
+
+/* Oculta el logo pequeño por defecto */
+.nav_logo-small {
+  width: 124px;
+  display: none;
+  z-index: 10; /* Asegurar que esté sobre el menú */
+  position: relative; /* Asegura la posición en relación a sus contenedores */
+}
+
+.nav_list {
+  background-color: #000;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: grid;
+  align-content: flex-end;
+  padding-bottom: 100px;
+  gap: 2rem;
+  padding-left: 5%;
+  z-index: 2;
+  /* Animación del menú para abrir y cerrar */
+  transform: var(--estado-menu);
+  transition: 300ms transform;
+}
+
+.nav_item {
+  list-style: none;
+}
+
+.nav_link {
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+}
+
+.nav_hamburguesa,
+.nav_cruz {
+  color: #fff;
+  transition: 300ms transform;
+  grid-column: -2/-1;
+  grid-row: 1/2;
+  z-index: 3;
+}
+
+.nav_icon {
+  width: 40px;
+}
+
+li {
+  text-decoration: wavy;
+  font-style: bold;
+}
+
+li:hover {
+  transform: translateY(-2px);
+  transition: all 300ms;
+}
+
+.contenedor-icon {
+  margin-top: 32px;
+  padding: 5px;
+  display: flex; /* Alinea los iconos horizontalmente */
+  justify-content: center; /* Alinea los iconos a la izquierda */
+}
+
+.logos {
+  width: 54px;
+  height: 54px;
+  padding: 5px;
+  filter: invert();
+}
+
+.logos:hover {
+  transform: translateY(-2px);
+  transition: all 300ms;
+}
+
+.top {
+  display: inline-block; /* Para que el botón sea tratable como elemento en línea */
+  transition: transform 300ms ease-in-out; /* Transición suave de 300ms */
+}
+
+/* Animación al posicionarse sobre el enlace */
+.top:hover {
+  transform: translateY(-5px); /* Se mueve 5px hacia arriba */
+}
+
+footer {
+  padding-top: 70vh;
+  text-align: center;
+  color: #fff;
+  font-size: medium;
+  font-family: "Roboto", sans-serif;
+  margin-top: auto; /* Empuja el footer al final de la página */
+}
+
+/* Pantallas grandes (mín. 1024px) */
+@media (min-width: 1024px) {
+  .nav {
+    --estado-hamburguesa: scale(0);
+    --estado-menu: translate(0);
+  }
+
+  .nav_list {
+    padding: 0;
+    background-color: transparent;
+    position: relative;
+    gap: 1.5rem;
+    grid-auto-flow: column;
+    transform: none;
+    grid-column: -2/-1;
+    grid-row: 1/2;
+    height: auto;
+  }
+
+  .nav_link {
+    font-size: 1rem;
+    letter-spacing: normal;
+  }
+
+  /* Oculta el icono hamburguesa */
+  .nav_hamburguesa,
+  .nav_cruz {
+    display: none;
+  }
+
+  /* Logo grande visible */
+  .nav_logo {
+    display: block;
+  }
+
+  /* Logo pequeño oculto */
+  .nav_logo-small {
+    display: none;
+  }
+}
+
+/* Pantallas medianas y pequeñas (máx. 1024px) */
+@media (max-width: 1300px) {
+  /* Muestra el menú hamburguesa */
+  .nav_hamburguesa {
+    display: block;
+  }
+
+  /* Oculta el logo grande y muestra el logo pequeño */
+  .nav_logo {
+    display: none;
+  }
+
+  .nav_logo-small {
+    display: block;
+  }
+
+  .contenedor-icon {
+    margin-top: 0;
+    justify-content: flex-end;
+    padding-right: 40px;
+  }
+
+  footer {
+    padding-top: 55vh;
+    color: #fff;
+    font-size: medium;
+  }
+}
+
+@media (max-width: 767px) {
+  /* Muestra el logo pequeño y oculta el grande */
+  .nav_logo {
+    display: none;
+  }
+  .nav_logo-small {
+    display: block;
+  }
+
+  /* Ajusta contenedor de iconos */
+  .contenedor-icon {
+    margin-top: -32px;
+    justify-content: flex-end;
+    padding-right: 24px;
+    z-index: 1;
+  }
+
+  /* Así el menú desplegable cubre toda la pantalla */
+  .nav_list {
+    height: 100vh;
+    margin-top: 0;
+  }
+
+  /* Ajuste de los iconos de redes sociales*/
+  .logos {
+    width: 36px;
+    height: 36px;
+    padding: 5px;
+  }
+
+  footer {
+    padding-top: 54vh;
+    color: #fff;
+    font-size: medium;
+  }
+
+  /*Body con una nueva imagen para pantallas de telefonos celulares*/
+  body {
+    font-family: "Poppins", sans-serif;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+      url("../assets/img/fondo/bandaltaa.jpg");
+    background-size: cover;
+    height: 100vh;
+  }
+
+  .logos {
+    width: 32px;
+    height: 32px;
+    padding: 5px;
+    filter: invert();
+    position: relative;
+  }
+}
+
+/* Estilo para la ventana emergente (pop-up hecho con javascript) */
+
+.nav_logo,
+.nav_logo-small {
+  cursor: pointer;
+}
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7); /* Fondo semitransparente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden; /* Inicialmente oculto */
+  opacity: 0;
+  transition: visibility 0s, opacity 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+.popup {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 90vw; /* 90% del ancho de la ventana */
+  max-height: 90vh; /* 90% del alto de la ventana */
+  box-sizing: border-box; /* Asegura que el padding esté dentro del tamaño */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.popup img {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain; /* Asegura que la imagen se ajuste sin deformarse */
+  margin-bottom: 10px;
+}
+
+.popup h2 {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.popup-overlay.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup-close {
+  cursor: pointer;
+  background-color: #fff;
+  font-style: bold;
+  color: #000;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+/* Para pantallas más pequeñas */
+@media (max-width: 768px) {
+  .popup {
+    max-width: 95vw;
+    max-height: 85vh;
+  }
+
+  .popup h2 {
+    font-size: 16px;
+  }
+
+  .popup-close {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+}
+
+/* Para telefonos celulares */
+@media (max-width: 480px) {
+  .popup {
+    max-width: 100vw;
+    max-height: 75vh;
+    padding: 10px;
+  }
+
+  .popup h2 {
+    font-size: 14px;
+  }
+
+  .popup-close {
+    font-size: 10px;
+    padding: 5px 10px;
+  }
+}
